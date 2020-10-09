@@ -2,7 +2,7 @@
 
 PORT=5555
 
-DEBUG=game-project
+DEBUG=GAME_PROJECT
 
 ## Also install ts-node globally like so
 

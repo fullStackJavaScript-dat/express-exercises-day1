@@ -1,7 +1,9 @@
 import IGameUser from '../interfaces/GameUser';
+import path from "path";
 import {bryptAsync,bryptCheckAsync} from "../utils/bcrypt-async-helper"
-const debug = require("debug")("game-project");
+const debug = require("debug")("GAME_PROJECT");
 import {ApiError} from "../errors/apiError"
+
 
 function dummyReturnPromise<T>(val: T | null, err: string="Unknown Error",code:number=500): Promise<T> {
     return new Promise<T>((resolve, reject) => {
@@ -57,6 +59,7 @@ export default class UserFacade {
 
 async function test() {
     console.log("testing")
+    require('dotenv').config({path:path.join(process.cwd(),".env")});
     await UserFacade.addUser({ name: "kim", userName: "kim@b.dk", password: "secret", role: "user" })
     await UserFacade.addUser({ name: "ole", userName: "ole@b.dk", password: "secret", role: "user" })
     const all = await (await UserFacade.getAllUsers()).length;
